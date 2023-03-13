@@ -4,22 +4,25 @@ from even_numbers import find_even
 
 print("Hello world!")
 
+try:
+    first_number = float(input("Enter first number: "))
+    second_number = float(input("Enter second number: "))
+    
+except:
+    print("Please, enter correct numbers")
+
+
 while True:
     try:
-        first_number = float(input("Enter first number: "))
-        second_number = float(input("Enter second number: "))
-        break
+        supported_operations = ", ".join(list(OPERATIONS.keys()))
+        operation = input(f"Enter operation ({supported_operations}): ")
     except:
-        print("Please, enter correct numbers")
-
-
-while True:
-    supported_operations = ", ".join(list(OPERATIONS.keys()))
-    operation = input(f"Enter operation ({supported_operations}): ")
-    if operation not in OPERATIONS:
-        print("This operation is not supported")
-    else:
-        break
+        print("WTF")
+    #if operation not in OPERATIONS:
+     #   print("This operation is not supported")
+    #else:
+    break
+    
 
 try:
     print(calculate(operation, first_number, second_number))
