@@ -33,6 +33,10 @@ class TestCalculator(unittest.TestCase):
        self.assertEqual(get_average_length_of_words_str(test),3.61)
 
     def test_average_len_of_sentences(self):
+       test = ""
+       self.assertEqual(get_average_len_of_sentences_str(test),"error")
+
+    def test_average_len_of_sentences(self):
        test ="abc abc abc abc olololololol abc!!!!! Mr. Anderson?! Ya... No, i am not."
        self.assertEqual(get_average_len_of_sentences_str(test),11.75)
 

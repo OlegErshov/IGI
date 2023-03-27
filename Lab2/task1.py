@@ -3,18 +3,18 @@ import os
 from collections import Counter
 
 def print_text():
-    """Prints the text in the file"""
+    
 
-    os.chdir(r"D:\BSUIR\IGI\lab2")
+    os.chdir(r"/home/oleg/BSUIR/IGI/Lab2")
     f = open("text.txt", "r", encoding="utf-8")
 
     text = f.read()
     print(text)
 
 def get_amount_of_sentences() -> int:
-    """Get the amount of sentences"""
+    
 
-    os.chdir(r"D:\BSUIR\IGI\lab2")
+    os.chdir(r"/home/oleg/BSUIR/IGI/Lab2")
     f = open("text.txt", "r", encoding="utf-8")
 
     text = f.read()
@@ -35,9 +35,7 @@ def get_amount_of_nondec_sentences_str(a) -> int:
     return len(match)
 
 def get_amount_of_nondec_sentences() -> int:
-    """Get the amount of non-declarative sentences
-
-    Declarative sentence is a sentence ending with '.' or '...' separators."""
+   
 
     f = open(os.path.join(os.getcwd(), "text.txt"), "r", encoding="utf-8")
 
@@ -62,6 +60,8 @@ def get_average_length_of_sentences() -> int:
     length = 0
     for val in match:
         length += len(val)
+    if length - no_word_length == 0:
+        return "eroor"
     return (length - no_word_length)/get_amount_of_sentences()
 
 def get_average_len_of_sentences_str(a) -> int:
@@ -124,21 +124,22 @@ def get_average_length_of_words_str(a)->int:
     return int((length - no_word_length) * 100 / (words_count - no_words_count)) / 100
 
 def get_top_K_repeated_N_grams(text, k=10, n=4):
-    sentences = get_amount_of_sentences_from_string(text)
-
     patern = r"(\w+|\d+)"
     match = re.findall(patern,text)
 
     not_word_pattern = r"(?<=\s)(\d+)(?=\s)"
     no_word_match = re.findall(not_word_pattern,text)
     
-    all_words = match - no_word_match
     
-    words_by_sentence = [all_words.findall(
-        sent) for sent in sentences]
+    for elem in match:
+        for item in no_word_match:
+            if(elem == item):
+                match.remove(elem)
 
+
+   
     n_grams = []
-    for words in words_by_sentence:
+    for words in match:
         n_grams.extend(list(zip(*[words[i:] for i in range(n)])))
 
     counter = Counter()
@@ -147,3 +148,6 @@ def get_top_K_repeated_N_grams(text, k=10, n=4):
         counter[' '.join(n_gram)] += 1
 
     return dict(counter.most_common(k))
+
+text = "asddf asdfe kldfngk ad1234 askd asfhiu23hu"
+print(get_top_K_repeated_N_grams(text))

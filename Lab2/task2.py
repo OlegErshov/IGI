@@ -3,6 +3,9 @@ import os
 import json
 
 class User:
+    elements:set = set()
+    username:str = str()
+
     def init(self):
         self.elements: set = set()
         self.username: str = str(input("Enter username: ")) 

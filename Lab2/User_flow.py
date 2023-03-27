@@ -6,6 +6,7 @@ from task2 import User
 def main() -> None: 
      
     user: User =  User() 
+    user.init()
     try: 
         while True: 
             commands = input("Enter next command:\n").split(" ") 
@@ -35,6 +36,7 @@ def main() -> None:
                     if answer == "Yes": 
                         user.save() 
                     user = User() 
+                    user.init()
     except KeyboardInterrupt: 
         answer = str(input("Save data (Yes / No)?\n")) 
         if answer == "Yes": 
@@ -42,5 +44,5 @@ def main() -> None:
         sys.exit(0) 
   
   
-if __name__ == "main": 
+if __name__ == '__main__':
     main()
