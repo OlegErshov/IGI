@@ -1,9 +1,9 @@
 import unittest
 
-from IGI.Lab2.task1 import get_amount_of_nondec_sentences_str
 from task1 import get_amount_of_sentences_from_string
 from task1 import get_average_len_of_sentences_str
 from task1 import get_average_length_of_words_str
+from task1 import get_amount_of_nondec_sentences_str
 
 class TestCalculator(unittest.TestCase):
 

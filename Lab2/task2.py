@@ -1,6 +1,6 @@
 import re
 import os
-import ujson
+import json
 
 class User:
     def init(self):
@@ -15,13 +15,13 @@ class User:
             file_stream = open( 
                 os.path.join("data", self.username + ".json"), "r", encoding="utf8" 
             ) 
-            self.elements = self.elements.union(set(ujson.load(file_stream))) 
+            self.elements = self.elements.union(set(json.load(file_stream))) 
         except FileNotFoundError: 
             pass 
 
     def save(self):
         with open(os.path.join("data", self.username + ".json"), "w", encoding="utf8") as fp: 
-            ujson.dump(list(self.elements), fp) 
+            json.dump(list(self.elements), fp) 
     
     def add(self,obj):
         self.elements.add(obj)
