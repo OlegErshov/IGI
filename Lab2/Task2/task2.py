@@ -6,24 +6,32 @@ class User:
     elements:set = set()
     username:str = str()
 
-    def init(self):
-        self.elements: set = set()
-        self.username: str = str(input("Enter username: ")) 
-        answer = str(input("Load data (Yes / No)?\n")) 
-        if answer == "Yes": 
-            self.load()
+    def __init__(self):
+        try:
+            self.elements: set = set()
+            self.username: str = str(input("Enter username: ")) 
+            answer = str(input("Load data (Yes / No)?\n")) 
+
+            if answer == "Yes": 
+                self.load()
+
+        except EOFError:
+            print("Eror")
+       
     
-    def load(self):
+    def load(self)->None:
         try: 
-            file_stream = open( 
-                os.path.join("data", self.username + ".json"), "r", encoding="utf8" 
-            ) 
-            self.elements = self.elements.union(set(json.load(file_stream))) 
+            with open(os.path.join("/home/oleg/BSUIR/IGI/Lab2/Task2/data", self.username + ".json"), 'r') as file_stream:
+                self.elements = self.elements.union(set(json.load(file_stream)))
+            # file_stream = open( 
+            #     os.path.join("./Task2/data", self.username + ".json"), "r", encoding="utf8"
+            # ) 
+            # self.elements = self.elements.union(set(json.load(file_stream))) 
         except FileNotFoundError: 
             pass 
 
-    def save(self):
-        with open(os.path.join("data", self.username + ".json"), "w", encoding="utf8") as fp: 
+    def save(self)->None:
+        with open(os.path.join("/home/oleg/BSUIR/IGI/Lab2/Task2/data", self.username + ".json"), "w", encoding="utf8") as fp: 
             json.dump(list(self.elements), fp) 
     
     def add(self,obj):

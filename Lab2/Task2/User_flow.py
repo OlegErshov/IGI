@@ -1,12 +1,12 @@
 import sys 
   
-from task2 import User 
+from task2 import User
   
   
 def main() -> None: 
      
     user: User =  User() 
-    user.init()
+    #user.init()
     try: 
         while True: 
             commands = input("Enter next command:\n").split(" ") 
@@ -31,12 +31,14 @@ def main() -> None:
                     user.save() 
                 case "load": 
                     user.load() 
+                case "exit":
+                    return
                 case "switch": 
                     answer = str(input("Save data (Yes / No)?\n")) 
                     if answer == "Yes": 
                         user.save() 
                     user = User() 
-                    user.init()
+                    #user.init()
     except KeyboardInterrupt: 
         answer = str(input("Save data (Yes / No)?\n")) 
         if answer == "Yes": 

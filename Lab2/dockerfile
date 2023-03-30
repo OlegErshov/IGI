@@ -1,7 +1,0 @@
-FROM python
-
-WORKDIR /Lab2_image
-
-COPY ./code .
-
-CMD ["python","User_flow"]
