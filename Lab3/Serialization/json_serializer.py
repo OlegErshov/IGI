@@ -118,3 +118,42 @@ def deserialize_function(self, obj):
         result.__getattribute__(GLOBAL_FIELD)[result.__name__] = result
 
     return result
+
+
+def serialize_class(self, obj):
+        result = {VALUE_FIELD: {}}
+        members = []
+        bases = []
+
+        for base in obj.__bases__:
+            if base.__name__ != OBJECT_NAME:
+                bases.append(base)
+        result[VALUE_FIELD][self.serialize(BASE_NAME)] = self.serialize(bases)
+
+        for member in inspect.getmembers(obj):
+            if member[0] not in CLASS_ATTRIBUTE_NAMES:
+                members.append(member)
+
+        result_data = self.serialize(DATA_NAME)
+
+        new_dict = {NAME_FIELD: obj.__name__}
+
+        for member in members:
+
+            new_dict[member[0]] = member[1]
+
+        result[VALUE_FIELD][result_data] = self.serialize(new_dict)
+
+        return result
+
+def deserialize_class(self, obj):
+        result_data = self.serialize(DATA_NAME)
+
+        result_bases = tuple(self.deserialize(obj[VALUE_FIELD][self.serialize(BASE_NAME)]))
+
+        result = self.deserialize(obj[VALUE_FIELD][result_data])
+        result_name = result[NAME_FIELD]
+        del result[NAME_FIELD]
+        return type(result_name, (object,), result)
+
+

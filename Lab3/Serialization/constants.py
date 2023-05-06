@@ -1,6 +1,12 @@
 TYPE_FIELD = "TYPE"
 VALUE_FIELD = "VALUE"
 
+CLASS_NAME = "class"
+OBJECT_NAME = "object"
+
+BASE_NAME = "base"
+DATA_NAME = "data"
+
 TYPES_NAMES = [
     "int",
     "float",
@@ -16,6 +22,13 @@ ITERABLE_NAMES = [
     "tuple",
     "bytes",
     "set"
+]
+
+CLASS_ATTRIBUTE_NAMES = ["__class__",
+                         "__doc__",
+                         "__getattribute__",
+                         "__new__",
+                         "__setattr__"
 ]
 
 FUNCTION_ATTRIBUTES_NAMES = [
@@ -36,6 +49,7 @@ FUNCTION_CREATE_ATTRIBUTES_NAMES = [
 CODE_FIELD = "__code__"
 GLOBAL_FIELD = "__globals__"
 NAME_FIELD = "__name__"
+
 
 
 CO_NAMES_FIELD = "co_names"
