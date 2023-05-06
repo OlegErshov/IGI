@@ -157,3 +157,64 @@ def deserialize_class(self, obj):
         return type(result_name, (object,), result)
 
 
+def serialize_other(self, obj):
+        result = {VALUE_FIELD: {}}
+        members = []
+
+        for member in inspect.getmembers(obj):
+            if not callable(member[1]) and member[0] != DOC_ATTRIBUTE_NAME:
+                members.append(member)
+
+        for key, value in members:
+            result_key = self.serialize(key)
+            result_value = self.serialize(value)
+            result[VALUE_FIELD][result_key] = result_value
+
+        return result
+
+def deserialize_instance(self, obj):
+        pass
+
+def serialize_module(self, obj):
+        result = {VALUE_FIELD: self.serialize(obj.__name__)}
+        return result
+
+def deserialize_module(self, obj):
+        return __import__(self.deserialize(obj[VALUE_FIELD]))
+
+def serialize_builtin(self, obj):
+        if obj.__module__ is not None:
+            result = {VALUE_FIELD: self.serialize([str(obj.__module__), str(obj.__name__)])}
+        else:
+            result = {VALUE_FIELD: self.serialize([obj.__name__])}
+        return result
+
+def deserialize_builtin(self, obj):
+        result = self.deserialize(obj[VALUE_FIELD])
+        if len(result) == 1:
+            return __import__(result[0])
+        else:
+            return __import__(result[0], result[1])
+
+def serialize_object(self, obj):
+        result = {VALUE_FIELD: {}}
+        obj_type = type(obj)
+
+        for attribute, value in obj.__dict__.items():
+            result_attribute = self.serialize(attribute)
+            result_value = self.serialize(value)
+            result[VALUE_FIELD][result_attribute] = result_value
+
+        result[VALUE_FIELD][self.serialize(TYPE_FIELD)] = self.serialize(obj_type)
+        return result
+
+def deserialize_object(self, obj):
+        result = object
+
+        result = self.deserialize(obj[VALUE_FIELD][self.serialize(TYPE_FIELD)])()
+        for attribute, value in obj[VALUE_FIELD].items():
+            result_attribute = self.deserialize(attribute)
+            result_value = self.deserialize(value)
+            result.result_attribute = result_value
+
+        return result

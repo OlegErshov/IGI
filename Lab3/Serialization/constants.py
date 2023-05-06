@@ -7,6 +7,9 @@ OBJECT_NAME = "object"
 BASE_NAME = "base"
 DATA_NAME = "data"
 
+DOC_ATTRIBUTE_NAME = "__doc__"
+
+
 TYPES_NAMES = [
     "int",
     "float",
