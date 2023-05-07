@@ -1,3 +1,6 @@
+
+OBJECT_TYPE_REGEX = "\'([\w\W]+)\'"
+
 TYPE_FIELD = "TYPE"
 VALUE_FIELD = "VALUE"
 
@@ -8,7 +11,9 @@ BASE_NAME = "base"
 DATA_NAME = "data"
 
 DOC_ATTRIBUTE_NAME = "__doc__"
-
+DICTIONARY_NAME = "dict"
+FUNCTION_NAME = "function"
+MODULE_NAME = "module"
 
 TYPES_NAMES = [
     "int",
