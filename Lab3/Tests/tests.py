@@ -1,5 +1,5 @@
 
-from Tests.constants import *
+from constants import *
 from Serializer.Base.deserialization import deserialize
 from Serializer.Base.serialization import serialize
 
