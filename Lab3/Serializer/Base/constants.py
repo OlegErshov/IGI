@@ -1,68 +1,53 @@
+TYPE = "type"
+VALUE = "value"
 
-OBJECT_TYPE_REGEX = "\'([\w\W]+)\'"
+DICT = "dict"
+LIST = "list"
+BYTES = "bytes"
+TUPLE = "tuple"
+INT = "int"
+BOOL = "bool"
+STR = "str"
+FLOAT = "float"
+NONE_TYPE = "NoneType"
+COMPLEX = "complex"
+TRUE = "True"
 
-TYPE_FIELD = "TYPE"
-VALUE_FIELD = "VALUE"
+PRIMITIVE_TYPES = [INT, FLOAT, BOOL, COMPLEX, NONE_TYPE, STR]
+DEFAULT_COLLECTION_TYPES = [LIST, TUPLE, BYTES]
 
-CLASS_NAME = "class"
-OBJECT_NAME = "object"
+FUNCTION = "function"
 
-BASE_NAME = "base"
-DATA_NAME = "data"
+CODE = "__code__"
+CLOSURE = "__closure__"
+NAME = "__name__"
+DEFAULTS = "__defaults__"
 
-DOC_ATTRIBUTE_NAME = "__doc__"
-DICTIONARY_NAME = "dict"
-FUNCTION_NAME = "function"
-MODULE_NAME = "module"
-
-TYPES_NAMES = [
-    "int",
-    "float",
-    "complex",
-    "bool",
-    "str",
-    "NoneType"
-
+FUNCTION_ATTRIBUTES = [
+    CODE,
+    NAME,
+    DEFAULTS,
+    CLOSURE
 ]
 
-ITERABLE_NAMES = [
-    "list",
-    "tuple",
-    "bytes",
-    "set"
+GLOBALS = "__globals__"
+BUILTINS = "__builtins__"
+DOC = "__doc__"
+OBJECT = "object"
+OBJECT_TYPE = "__object_type__"
+
+CLASS = "class"
+NOT_CLASS_ATTRIBUTES = [
+    "__class__",
+    "__getattribute__",
+    "__new__",
+    "__setattr__",
 ]
 
-CLASS_ATTRIBUTE_NAMES = ["__class__",
-                         "__doc__",
-                         "__getattribute__",
-                         "__new__",
-                         "__setattr__"
-]
+MODULE_NAME = "__module__name__"
+FIELDS = "__fields__"
 
-FUNCTION_ATTRIBUTES_NAMES = [
-    "__code__",
-    "__name__",
-    "__defaults__",
-    "__closure__",
-]
-
-FUNCTION_CREATE_ATTRIBUTES_NAMES = [
-    "__code__",
-    "__globals__",
-    "__name__",
-    "__defaults__",
-    "__closure__",
-]
-
-CODE_FIELD = "__code__"
-GLOBAL_FIELD = "__globals__"
-NAME_FIELD = "__name__"
-
-
-
-CO_NAMES_FIELD = "co_names"
-
-CODE_ARGS = (
+CODE_OBJECT_ARGS = [
     'co_argcount',
     'co_posonlyargcount',
     'co_kwonlyargcount',
@@ -79,4 +64,4 @@ CODE_ARGS = (
     'co_lnotab',
     'co_freevars',
     'co_cellvars'
-)
+]

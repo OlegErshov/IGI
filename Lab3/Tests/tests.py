@@ -1,11 +1,11 @@
-
+import unittest
 from constants import *
 from Serializer.Base.deserialization import deserialize
 from Serializer.Base.serialization import serialize
 
-
-def test_primitive_1():
-    assert a == deserialize(serialize(a))
+class Test(unittest.TestCase):
+    def test_primitive_1(self):
+        self.assertEqual(a,deserialize(serialize(a)))
 
 
 def test_primitive_2():
@@ -225,3 +225,7 @@ def test_decorator():
     f = raise_if_to_many_args(sum_func)
 
     assert f(1, 2, 3) == tmp(1, 2, 3)
+
+
+if __name__ == "__main__":
+    unittest.main()
