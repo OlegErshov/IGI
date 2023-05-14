@@ -1,0 +1,9 @@
+FROM python
+
+WORKDIR /home/oleg/BSUIR/IGI/Lab2/Task1
+
+COPY ["task1.py", "./"]
+COPY ["text.txt", "./"]
+COPY ["test_unit.py", "./"]
+
+CMD ["python","task1.py"]
